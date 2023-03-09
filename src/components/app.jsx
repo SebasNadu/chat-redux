@@ -1,9 +1,19 @@
-import React from 'react';
+import React from "react";
+import Message from "../containers/channel_list";
+import MessageList from "../containers/message_list";
 
 const App = () => {
   return (
-    <div className="app">
-      <p>React + Redux starter</p>
+    <div className="messaging-wrapper">
+      <div className="logo-container">
+        <img
+          className="messaging-logo"
+          src="assets/images/logo.svg"
+          alt="logo"
+        />
+      </div>
+      <ChannelList />
+      <MessageList />
     </div>
   );
 };
