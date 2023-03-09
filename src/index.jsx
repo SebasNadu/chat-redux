@@ -1,8 +1,10 @@
+/* eslint no-alert:off */
+
 // external modules
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import logger from "redux-logger";
 import reduxPromise from "redux-promise";
 
@@ -10,7 +12,7 @@ import reduxPromise from "redux-promise";
 import App from "./components/app";
 import "../assets/stylesheets/application.scss";
 
-// reducers
+// State and reducers
 import messagesReducer from "./reducers/messages_reducer";
 import selectedChannelReducer from "./reducers/selected_channel_reducer";
 
@@ -19,20 +21,20 @@ const identityReducer = (state = null) => state;
 const initialState = {
   messages: [],
   channels: ["general", "react", "paris"],
-  selectedChannel: "general",
   currentUser:
     prompt("What is your username?") ||
     `anonymous${Math.floor(10 + Math.random() * 90)}`,
+  selectedChannel: "general",
 };
+
 const reducers = combineReducers({
   messages: messagesReducer,
-  channels: indentityReducer,
-  currentUser: indentityReducer,
+  channels: identityReducer,
+  currentUser: identityReducer,
   selectedChannel: selectedChannelReducer,
 });
 
 // Middlewares
-
 const middlewares = applyMiddleware(reduxPromise, logger);
 const store = createStore(reducers, initialState, middlewares);
 

@@ -7,7 +7,7 @@ function strToRGB(str) {
     hash = str.charCodeAt(i) + ((hash << 5) - hash);
   }
   const c = (hash & 0x00ffffff).toString(16).toUpperCase();
-  return `#${"0000".substring(0, 6 - c.length)}${c}`;
+  return `#${"00000".substring(0, 6 - c.length)}${c}`;
 }
 
 const Message = (props) => {
@@ -23,3 +23,5 @@ const Message = (props) => {
     </div>
   );
 };
+
+export default Message;
